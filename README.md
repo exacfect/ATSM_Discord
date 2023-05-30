@@ -26,4 +26,4 @@ Auto Send Message Discord is a command-line program written in Python to automat
 ### [V1.0.1](https://raw.githubusercontent.com/exacfect/ATSM_Discord/main/Assets/ATSM.exe)
 
 # Copyright
-* Exacfect 2023
+* [Exacfect](https://github.com/exacfect)
