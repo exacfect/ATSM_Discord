@@ -19,7 +19,7 @@ Auto Send Message Discord is a command-line program written in Python to automat
 - The Discord token provides access to your account. Make sure not to share this token with others.
 - The program uses the Discord API to send messages. Please do not misuse this program to send spam messages or violate Discord's policies.
 - The program is designed to run in a command-line environment. There is no graphical user interface for this program.
-- The purpose of this tool is not for spamming, raiding, or attacking. We will not be responsible for any consequences caused by your actions.
+- The purpose of this tool is not for *spamming*, raiding, or attacking. We will not be responsible for any consequences caused by your actions.
 - Your delay time will be +2 seconds (2 seconds is a delay to call the Discord API.)
 # Releases
 
