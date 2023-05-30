@@ -23,7 +23,7 @@ Auto Send Message Discord is a command-line program written in Python to automat
 - Your delay time will be +2 seconds (2 seconds is a delay to call the Discord API.)
 # Releases
 
-### [V1.0.1](https://github.com/3xacf3ct/ATSM/releases/tag/ATSM)
+### [V1.0.1](https://raw.githubusercontent.com/exacfect/ATSM_Discord/main/Assets/ATSM.exe)
 
 # Copyright
 * Exacfect 2023
