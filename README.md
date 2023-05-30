@@ -12,8 +12,8 @@ Auto Send Message Discord is a command-line program written in Python to automat
 - Create the `message.txt` file and enter the message content you want to send.
 
 ## Contributors
-* Project Leader Exacfect
-* Project Preview Exacfect
+* Project Leader [Exacfect](https://github.com/exacfect)
+* Project Preview [Simon](https://github.com/Simondepchai)
 * If you encounter any issues or have suggestions for improvements, please create an issue or submit a pull request to contribute to the project.
 # Note
 - The Discord token provides access to your account. Make sure not to share this token with others.
