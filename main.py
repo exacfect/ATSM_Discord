@@ -1,15 +1,25 @@
 import requests
 import time
 import os
-# Thay thế các giá trị sau bằng thông tin của bạn
 try:
     with open('settings.txt', 'r') as settings_file:
         settings = settings_file.read().splitlines()
         token = settings[0].strip()
         channel_id = settings[1].strip()
         delay = int(settings[2].strip())
+    print("Your token: {}\nChannel ID: {}\nDelay: {}".format(token, channel_id, delay))
+    print("Bạn có thể nhấn Enter để xác nhận hoặc nhấn 'n' để chỉnh sửa lại.")
+    confirmation = input()
+    if confirmation.lower() == 'n':
+        update_token = input('Bạn muốn cập nhật token (nhập "y" để đồng ý, nếu không thì chỉ cập nhật ID Kênh và Delay): ')
+        if update_token.lower() == 'y':
+            token = input('Nhập mã token Discord: ')
+            print("Token đã được cập nhật.")
+            print("Your token: {}\nChannel ID: {}\nDelay: {}".format(token, channel_id, delay))
+        channel_id = input('Nhập ID của kênh: ')
+        delay = int(input('Nhập thời gian delay (giây): '))
+        print("Token, Channel ID và Delay đã được cập nhật.")
 except FileNotFoundError:
-    # Nếu tệp tin settings.txt không tồn tại, yêu cầu người dùng nhập thông tin
     token = input('Nhập mã token Discord: ')
     channel_id = input('Nhập ID của kênh: ')
     delay = int(input('Nhập thời gian delay (giây): '))
@@ -29,7 +39,6 @@ if message_content == "":
     os.system('message.txt')
     exit()
 print("Lưu ý: mục đích của tool không phải để spam,raid,attack, chúng tôi sẽ không chịu trách nhiệm về HẬU QUẢ bạn gây ra!")
-print(time.ctime())
 while True:
 
     # Tạo header chứa mã token
@@ -43,17 +52,16 @@ while True:
     }
 
     # Tạo URL endpoint
-    url = f'https://discord.com/api/v9/channels/{channel_id}/messages'
+    api = f'https://discord.com/api/v9/channels/{channel_id}/messages'
 
     # Gửi POST request
-    response = requests.post(url, headers=headers, data=payload)
+    response = requests.post(api, headers=headers, data=payload)
 
     # Kiểm tra phản hồi từ API
     if response.status_code == 200:
-        print('Tin nhắn đã được gửi thành công với nội dung:\n'+message_content)
+        print('[{}] Tin nhắn đã được gửi thành công với nội dung:\n'.format(time.ctime())+message_content)
     else:
-        print('Có lỗi xảy ra khi gửi tin nhắn.')
-        print('Phản hồi từ API:', response.json())
+        print('[{}] Có lỗi xảy ra khi gửi tin nhắn.'.format(time.ctime()))
+        print('[{}] Phản hồi từ API:'.format(time.ctime()), response.json())
     seconds = delay+2
     time.sleep(seconds)
-    print(time.ctime())
