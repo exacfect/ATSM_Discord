@@ -44,8 +44,18 @@ if message_content == "":
     os.system('message.txt')
     exit()
 print("Lưu ý: mục đích của tool không phải để spam,raid,attack, chúng tôi sẽ không chịu trách nhiệm về HẬU QUẢ bạn gây ra!")
-while True:
+if len(settings) >= 4:
+    image_url = settings[3].strip()   # Thay bằng đường dẫn URL của ảnh thực tế
+    if image_url:
+        image = requests.get(image_url)
+        filename = os.path.basename(image_url)
+else:
+    image_url = None  
 
+while True:
+    if image_url:
+        with open(filename, 'wb') as file:
+            file.write(image.content)
     # Tạo header chứa mã token
     headers = {
         'authorization': token
@@ -55,16 +65,19 @@ while True:
     payload = {
         'content': message_content
     }
-
+    files = None
+    if image_url:
+        files = {'file': open(filename, 'rb')}
     # Tạo URL endpoint
     api = f'https://discord.com/api/v9/channels/{channel_id}/messages'
 
     # Gửi POST request
-    response = requests.post(api, headers=headers, data=payload)
+    response = requests.post(api, headers=headers, data=payload, files=files)
 
     # Kiểm tra phản hồi từ API
     if response.status_code == 200:
-        print('[{}] Tin nhắn đã được gửi thành công với nội dung:\n'.format(time.ctime())+message_content)
+        image_message = '' if image_url is None else '\n' + image_url
+        print('[{}] Tin nhắn đã được gửi thành công với nội dung:\n{}\n{}'.format(time.ctime(), message_content, image_message))
     else:
         print('[{}] Có lỗi xảy ra khi gửi tin nhắn.'.format(time.ctime()))
         print('[{}] Phản hồi từ API:'.format(time.ctime()), response.json())

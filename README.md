@@ -8,6 +8,7 @@ Auto Send Message Discord is a command-line program written in Python to automat
     - First line: Discord token of your account ([Tutorial](https://github.com/exacfect/ATSM_Discord/blob/639c120aab20fcd1aa002040eb8c1efd2b52c5e8/Assets/tutorial.png)).
     - Second line: ID of the channel you want to send messages to.
     - Third line: Delay time between sending messages (unit: seconds).
+    - Fourth line(Optional):Attachments URL (example:https://github.com/exacfect/ATSM_Discord/images.jpg) 
 
 - Edit the `message.txt` file and enter the message content you want to send.
 
@@ -24,7 +25,7 @@ Auto Send Message Discord is a command-line program written in Python to automat
 - Your delay time will be +2 seconds (2 seconds is a delay to call the Discord API.)
 # Releases
 
-### [V1.0.2](https://raw.githubusercontent.com/exacfect/ATSM_Discord/main/Assets/ATSM.exe)
+### [V1.0.3](https://raw.githubusercontent.com/exacfect/ATSM_Discord/main/Assets/ATSM.exe)
 
 # Copyright
 * [Exacfect](https://github.com/exacfect)
