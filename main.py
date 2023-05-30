@@ -1,3 +1,4 @@
+# Import thư viện.
 import requests
 import time
 import os
@@ -28,7 +29,7 @@ except FileNotFoundError:
     with open('settings.txt', 'w') as settings_file:
         settings_file.write(f'{token}\n{channel_id}\n{delay}')
 if not os.path.isfile("message.txt"):
-    # Create message.txt if it doesn't exist
+    # Tạo file message.txt nếu nó không có.
     with open("message.txt", "w"):
         pass
 message_file = 'message.txt'
