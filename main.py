@@ -15,10 +15,14 @@ try:
         update_token = input('Bạn muốn cập nhật token (nhập "y" để đồng ý, nếu không thì chỉ cập nhật ID Kênh và Delay): ')
         if update_token.lower() == 'y':
             token = input('Nhập mã token Discord: ')
+            with open('settings.txt', 'w') as settings_file:
+                settings_file.write(f'{token}')
             print("Token đã được cập nhật.")
             print("Your token: {}\nChannel ID: {}\nDelay: {}".format(token, channel_id, delay))
         channel_id = input('Nhập ID của kênh: ')
         delay = int(input('Nhập thời gian delay (giây): '))
+        with open('settings.txt', 'w') as settings_file:
+            settings_file.write(f'{token}\n{channel_id}\n{delay}')
         print("Token, Channel ID và Delay đã được cập nhật.")
 except FileNotFoundError:
     token = input('Nhập mã token Discord: ')
