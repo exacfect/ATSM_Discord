@@ -15,15 +15,13 @@ try:
         update_token = input('Bạn muốn cập nhật token (nhập "y" để đồng ý, nếu không thì chỉ cập nhật ID Kênh và Delay): ')
         if update_token.lower() == 'y':
             token = input('Nhập mã token Discord: ')
-            with open('settings.txt', 'w') as settings_file:
-                settings_file.write(f'{token}')
             print("Token đã được cập nhật.")
             print("Your token: {}\nChannel ID: {}\nDelay: {}".format(token, channel_id, delay))
         channel_id = input('Nhập ID của kênh: ')
         delay = int(input('Nhập thời gian delay (giây): '))
+        print("Token, Channel ID và Delay đã được cập nhật.")
         with open('settings.txt', 'w') as settings_file:
             settings_file.write(f'{token}\n{channel_id}\n{delay}')
-        print("Token, Channel ID và Delay đã được cập nhật.")
 except FileNotFoundError:
     token = input('Nhập mã token Discord: ')
     channel_id = input('Nhập ID của kênh: ')
@@ -44,14 +42,21 @@ if message_content == "":
     os.system('message.txt')
     exit()
 print("Lưu ý: mục đích của tool không phải để spam,raid,attack, chúng tôi sẽ không chịu trách nhiệm về HẬU QUẢ bạn gây ra!")
-if len(settings) >= 4:
-    image_url = settings[3].strip()   # Thay bằng đường dẫn URL của ảnh thực tế
-    if image_url:
-        image = requests.get(image_url)
-        filename = os.path.basename(image_url)
-else:
-    image_url = None  
+if not os.path.isfile("attachments.txt"):
+    # Tạo file message.txt nếu nó không có.
+    with open("attachments.txt", "w"):
+        pass
+image_url = None
 
+attachments_file = 'attachments.txt'
+with open(attachments_file, encoding='utf-8') as file:
+    attachments = file.read().splitlines()
+    if attachments:
+        image_url = attachments.pop(0)
+
+if image_url:
+    image = requests.get(image_url)
+    filename = os.path.basename(image_url)
 while True:
     if image_url:
         with open(filename, 'wb') as file:
